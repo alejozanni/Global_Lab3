@@ -1,0 +1,19 @@
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: black;
+    text-decoration: none;
+    
+}
+
+input {
+	width: calc(100%) ;
+	padding: 9px;
+	margin: auto;
+	margin-top: 5px;
+	font-size: 15px;
+    border-radius: 5px;
+    background-color:#0844a4 ;
+    color:white;
+}
+
