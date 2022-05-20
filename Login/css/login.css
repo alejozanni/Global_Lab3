@@ -63,7 +63,7 @@ input[type='submit']{
 
 }
 body{
-	background-image:url(/img/fondo.jpg);
+	background-image:url(../../img/fondo.jpg) !important;
 	width: 100%;
 	height:100%vh;
 	background-size: cover;

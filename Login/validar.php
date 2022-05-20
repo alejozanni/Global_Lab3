@@ -1,17 +1,17 @@
 <?php
 include('db.php');
-$usuario=$_POST['usuario'];
-$contraseña=$_POST['contraseña'];
+$username=$_POST['username'];
+$password=$_POST['password'];
 session_start();
-$_SESSION['usuario']=$usuario;
+$_SESSION['username']=$username;
 
 
-$conexion=mysqli_connect("localhost","root","12345","loggin");
+$connection=mysqli_connect("localhost","root","","defiathome");
 
-$consulta="SELECT*FROM usuarios where usuario='$usuario' and contraseña='$contraseña'";
-$resultado=mysqli_query($conexion,$consulta);
+$consult="SELECT*FROM users where username='$username' and password='$password'";
+$result=mysqli_query($connection,$consult);
 
-$filas=mysqli_num_rows($resultado);
+$filas=mysqli_num_rows($result);
 
 if($filas){
   
@@ -26,5 +26,5 @@ if($filas){
   <h1 class="bad">ERROR DE AUTENTIFICACION</h1>
   <?php
 }
-mysqli_free_result($resultado);
-mysqli_close($conexion);
+mysqli_free_result($result);
+mysqli_close($connection);
