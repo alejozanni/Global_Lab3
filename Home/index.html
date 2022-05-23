@@ -6,61 +6,236 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSS only -->
+    <script src="https://kit.fontawesome.com/20f80f1e2a.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="css/home.css">
 
     <title>DEFI At Home</title>
   </head>
-  <body>
-    <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            <img src="../img/logo/logoSoloNegro.png" alt="" width="60" height="48" class="d-inline-block align-text-top">
-          </a>
-          <a class="nav-link" href="#">Inicio</a>
-          <a class="nav-link" href="#">Cursos</a>
-          <a class="nav-link" href="#">Suscripciones</a>
-          <a class="nav-link" href="#">Testimonios</a>
-          <a class="nav-link" href="#">Contacto</a>            
+  
+  <body id="beginning">
+    <nav>
+        <div class="navbar navbar-expand">
+            <div class="container-xxl navbarChanges">
+                <a class="navbar-brand" href="#">
+                  <img src="../img/logo/logoSoloNegro.png" alt="" width="60" height="48" class="d-inline-block align-text-top">
+                </a>
 
-          <form action="../Login/index.html">
-            <input type="submit" class="btn btn-primary btn-sm me-4 ms-4 me-sm-0 ms-sm-0" value="Iniciar Sesion" />
-          </form>
-          <form action="../Sign up/index.html">
-            <input type="submit" class="btn btn-primary btn-sm me-4 ms-4 me-sm-0 ms-sm-0" value="Unirme" />
-          </form>
+                <ul class="navbar-nav ps-sm-4">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#beginning">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#courses">Cursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonios</a>
+                    </li>  
+                    <li class="nav-item">
+                      <a class="nav-link" href="#contact">Contacto</a>
+                  </li>  
+                </ul>
+            </div>
+
+            <div class="navbarButtons me-sm-5 ms-sm-5">
+                <ul class="navbar-nav mr-auto">
+                    <a href="../Sign up/index.html"><button type="button" class="btn btn-primary btn-sm ps-3 pe-3 me-sm-2 buttonsNav">Unirme</button></a>
+                    <a href="../Login/index.html"><button type="button" class="btn btn-primary btn-sm ps-3 pe-3 ms-sm-2 buttonsNav">Iniciar sesion</button></a>
+                </ul>
+            </div>
         </div>
     </nav>
 
+    
+    <div class="container-fluid pt-5 firstPresentation">
+      <div class="row justify-content-around pb-5 pt-5">
+          <div class="col-md-5 order-2 order-sm-first align-self-center text-center text-sm-start pt-4">
+              <h1 class="firstPresentationText"> 
+                  La revolución DEFI
+              </h1>
 
-    <div class="container-fluid first-presentation">
-    <div class="row justify-content-center">
-      <div class="col-md-5 order-2 order-sm-first align-self-center text-center text-sm-start">
-        <h1 class="m-3 m-xl-0">
-          La revolución DEFI
-        </h1>
+              <p class="fs-6 text-muted">
+                  Aprende crypto desde cero de una forma facil con cursos a tu ritmo <br> y una comunidad de lujo.
+              </p>
 
-        <p class="fs-5 lh-sm m-3 mt-sm-3 mb-sm-4 me-sm-0 ms-sm-0">
-            <small>
-            Aprende crypto desde cero de una forma facil con cursos a tu ritmo y una comunidad de lujo.</small>
-        </p>
-        
-        <div class="row">
-          <div class="d-grid gap-2 col-sm-4">
-            <form action="../Sign up/index.html">
-              <input type="submit" class="btn btn-primary btn-sm me-4 ms-4 me-sm-0 ms-sm-0" value="Unirme" />
-            </form>
+              <a href="../Sign up/index.html"><button type="button" class="btn btn-primary btn-sm ps-5 pe-5">Unirme</button></a>
           </div>
-        </div>
-        
-      </div>
-      <div class="col-md-6 m-3 m-xl-0 order-1 order-sm-last">
-        <img src="../img/defi2.png" class="img-fluid" alt="">
+          <div class="col-md-4 order-1 order-sm-last align-self-center text-center text-sm-start pt-4">
+              <img src="../img/defi2.png" class="img-fluid firstPresentationImage" alt="">
+          </div>
       </div>
     </div>
+
+
+  <div class="container-fluid pt-sm-5 coursesPresentation" id="courses">
+    <div class="align-self-center text-center pt-sm-5">
+        <h1> 
+            Cursos
+        </h1>
+        <p>
+          La forma mas facil de entender desde cero el mundo crypto y las finanzas descentralizadas.
+        </p>
+    </div>
+
+    <div class="row justify-content-evenly pt-sm-5 coursesPresentationColumns">
+        <div class="col-md-3 order-3 order-sm-0 text-center text-sm-start pt-sm-5 pb-sm-5">
+            <div class="card " style="width: 22rem;">
+                <div class="card-body "> 
+                    <h5 class="card-title mb-4">
+                        <div class="float mb-4">
+                            <i class="fa-solid fa-clipboard"></i>
+                        </div>
+                        Blockchain
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        Historia del dinero y de la blockchain.                          
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 order-1 order-sm-1 text-center text-sm-start pt-sm-5 pb-sm-5">
+            <div class="card" style="width: 22rem;">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">
+                        <div class="float mb-4">
+                            <i class="fa-solid fa-list"></i>
+                        </div>
+                        Bitcoin
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        La importancia de Bitcoin, exchanges, minado, transacciones, tipos de wallet, lightning network.
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 order-2 order-sm-2 text-center text-sm-start pt-sm-5 pb-sm-5">
+            <div class="card" style="width: 22rem;">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">
+                        <div class="float mb-4">
+                            <i class="fa-solid fa-face-grin"></i>
+                        </div>
+                        Inversión
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        Búsqueda de valor a la hora de invertir y analisis de proyectos.
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
-   
+
+  <div class="container-fluid pt-sm-5 testimonialsPresentation" id="testimonials">
+    <div class="align-self-center text-center pt-sm-5">
+        <h1> 
+            Testimonios
+        </h1>
+        <p>
+          Qué dicen sobre nosotros.
+          <br> <br>
+      </p>
+    </div>
+
+    <div class="card-group">
+      <div class="card align-self-center text-center">
+        <i class="fa-regular fa-user fa-10x"></i>
+        <div class="card-body">
+          <h5 class="card-title">Pepe Pepito</h5>
+          <p class="card-text"></p>Los cursos me parecen muy buenos y super completos. Hace mucho quería aprender sobre
+           crypto pero solo encontraba información desordenada.
+        </div>
+      </div>
+      <div class="card align-self-center text-center">
+        <i class="fa-regular fa-user fa-10x"></i>
+        <div class="card-body">
+          <h5 class="card-title">Pepe Pepito</h5>
+          <p class="card-text"></p>Los cursos me parecen muy buenos y super completos. Hace mucho quería aprender sobre
+           crypto pero solo encontraba información desordenada.
+        </div>
+      </div>
+      <div class="card align-self-center text-center">
+        <i class="fa-regular fa-user fa-10x"></i>
+        <div class="card-body">
+          <h5 class="card-title">Pepe Pepito</h5>
+          <p class="card-text"></p>Los cursos me parecen muy buenos y super completos. Hace mucho quería aprender sobre
+           crypto pero solo encontraba información desordenada.
+        </div>
+      </div>      
+    </div>
+  </div>
 
 
-  </body>
-</html>
+  <div class="container-fluid pt-sm-5 communityPresentation" id="comunnity">
+    <div class="align-self-center text-center pt-sm-5">
+        <h1> 
+            Comunidad
+        </h1>
+        <p>
+          Súmate a una comunidad de lujo donde podrás aprendes y/o consultar todo sobre el mundo
+           crypto y DEFI . No te pierdas esta oportunidad, es totalmente gratis.
+        </p>
+    </div>
+    <div class="container-fluid align-self-center text-center pt-sm-5 pb-sm-5 mt-5 communityPresentation">
+      <img src="../img/discord-logo.png" class="communityPresentationIcon margin" alt="">
+      <img src="../img/twitter-logo.png" class="communityPresentationIcon margin" alt="">
+      <img src="../img/linkedin-logo.png" class="communityPresentationIcon margin" alt="">
+    </div>
+  </div>
+
+  <div class="container-fluid pt-sm-5 teamPresentation" id="team">
+    <div class="align-self-center text-center pt-sm-5">
+        <h1> 
+            Nuestro Equipo <br> <br>
+        </h1>
+    </div>
+
+    <div class="card-group">
+      <div class="card align-self-center text-center">
+        <i class="fas fa-user fa-10x"></i>
+        <div class="card-body">
+          <h5 class="card-title">Pepe Pepito</h5>
+          <p class="card-text"></p>CEO & Co-founder
+        </div>
+      </div>
+      <div class="card align-self-center text-center">
+        <i class="fas fa-user fa-10x"></i>
+        <div class="card-body">
+          <h5 class="card-title">Pepe Pepito</h5>
+          <p class="card-text"></p>CTO & Co-founder.
+        </div>
+      </div>  
+    </div>
+  </div>
+
+
+  <div class="container-fluid pt-3 pb-3 mt-3 mb-3 footer" style="background-color: #edf0f4;" id="contact">
+    <div class="row justify-content-center pt-4">
+        <div class="col-md-3 order-1 order-sm-0 align-self-center text-center text-sm-center pt-sm-2 pb-sm-2">
+            <img src="../img/logo/logoCompletoNegro.png" class="img-fluid footerLogo" alt=""  >
+        </div>
+
+        <div class="col-md-3 order-0 order-sm-1 align-self-center text-center text-sm-start pt-sm-2 pb-sm-2">
+          <p><i class="fa-solid fa-location-dot"></i> Mendoza, Argentina</p>
+          <p><i class="fa-solid fa-phone"></i> + 54 (261) 697 - xxxx</p>
+          <p><i class="fa-solid fa-envelope"></i> soporte@defiathome.net</p>
+        </div>
+
+        <div class="col-md-3 order-2 order-sm-2 align-self-center text-center text-sm-start pt-sm-2 pb-sm-2">
+            <div class="mb-2 footerIcons">
+                <a href="#" class="pe-1"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" class="ps-1 pe-1"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="ps-1"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+
+            <h6 class="card-subtitle text-muted">
+                <i class="fa-solid fa-copyright"></i> 2022 - DEFIAtHome.com
+                <br>
+                Términos de servicio - Política de privacidad
+            </h6>
+        </div>
+    </div>
+
+</body>

@@ -1,19 +1,149 @@
-.nav-link {
-    display: block;
-    padding: 0.5rem 1rem;
+@media(max-width:1366px){
+    .buttonsNav{
+        width: 140px !important;
+    }
+}
+
+.btn-primary{
+    font-weight: 490;
+    border-color: #0844a4 !important;
+    background-color: #0844a4 !important;
+    transition:color 1s linear !important;
+}
+
+.btn{
+    transition:color 1s linear !important;
+}
+
+.btn-primary:hover{
+    transition: 1s !important;
+    color: black !important;
+    border-color: #67dcff !important;
+    background-color: #67dcff !important;
+}
+
+.btn:hover{
+    transition: 1s !important;
+}
+
+.navbar-expand{
+    border-bottom-style: solid;
+    border-color: #0844a4;
+}
+
+.nav-item a:hover{
+    transition: 1s;
+    color: #0844a4 !important;
+}
+
+.logo{
+    max-width: 8rem !important;
+}
+
+.navbarChanges{
+    justify-content: start !important;
+    margin-left: 3% !important;
+}
+
+.btn-primary{
+    border-radius: 35px !important;
+}
+
+.nav-item a{
     color: black;
-    text-decoration: none;
+}
+
+.leftFirstPresentation{
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.firstPresentationImage{
+    max-width: 40rem;
+}
+
+@media(max-width:1900px){
+    .firstPresentationText{
+        font-size: 3.5rem !important;
+    }
+}
+
+.communityPresentationIcon{
+    max-width: 11.5rem;
+}
+
+.communityPresentationIcon.margin{
+    margin-left: 6.5rem !important;
+    margin-right: 6.5rem !important;
+}
+
+
+@media(max-width:1900px){
+    .communityPresentationIcon.margin{
+        margin-left: 6.5rem !important;
+        margin-right: 6.5rem !important;
+    }
     
 }
 
-input {
-	width: calc(100%) ;
-	padding: 9px;
-	margin: auto;
-	margin-top: 5px;
-	font-size: 15px;
-    border-radius: 5px;
-    background-color:#0844a4 ;
-    color:white;
+@media(max-width:1366px){
+    .communityPresentationIcon{
+        margin-left: 0rem !important;
+        margin-right: 0em !important;
+    }
+
+    .communityPresentationIcon.margin{
+        margin-left: 0rem !important;
+        margin-right: 0em !important;
+    }
+
+    
+    .communityPresentationIcon,
+    .communityPresentationIcon.margin{
+        margin-left: 5rem !important;
+        margin-right: 5rem !important;
+    }
 }
 
+
+
+.card{
+    border: none !important;
+}
+
+.float{
+	width:48px !important;
+	height:48px !important;
+	background-color: #EDF0F4 !important;
+	color:#9FAFC1 !important;
+	border-radius:30px !important;
+	text-align: center !important;
+    font-size: 32px !important;
+}
+
+.float i{
+    text-align: center;
+    vertical-align: middle;
+    font-size: x-large;
+}
+
+.footer a{
+    text-decoration: none !important;
+    color: #6C757D;
+    transition:color 1s linear !important;
+}
+
+.footerLinks:hover{
+    transition: 1s !important;
+    color: #2e2e2e !important;
+}
+
+.footerIcons a:hover{
+    transition: 1s;
+    color: #2e2e2e !important;
+}
+
+.footerLogo{
+    max-width: 10rem !important;
+}
