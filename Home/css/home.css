@@ -1,3 +1,17 @@
+body{
+    background-color: azure;
+}
+
+.card-group{
+    background-color: azure;
+    color: white;
+}
+
+.card-group .card{
+    background-color: #0844a4;
+    border-radius: 30px;
+}
+
 @media(max-width:1366px){
     .buttonsNav{
         width: 140px !important;
@@ -53,14 +67,8 @@
     color: black;
 }
 
-.leftFirstPresentation{
-    display: inline-block;
-    vertical-align: middle;
-    line-height: normal;
-}
-
 .firstPresentationImage{
-    max-width: 40rem;
+    max-width: 55rem;
 }
 
 @media(max-width:1900px){
