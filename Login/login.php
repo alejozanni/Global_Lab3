@@ -7,11 +7,11 @@
         switch($_SESSION['rol']){
             case 1:
                 header('location: ../Admin/admin.php');
-            break;
+                break;
 
             case 2:
                 header('location: ../Teacher/teacher.php');
-            break;
+                break;
 
             case 3:
                 header('location: ../Student/student.php');

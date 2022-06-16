@@ -1,0 +1,49 @@
+.navbar-brand {
+    margin-left: 30%;
+  }
+  .d-flex {
+    margin-right: 3rem;
+  }
+  .btn {
+    margin-right: 5rem !important;
+  }
+  .titulo {
+    margin-top: 3rem !important;
+    width: 35rem !important;
+    height: 4rem !important;
+  
+    margin: 0 auto;
+  }
+  h1 {
+    height: 4rem !important;
+    border-style: solid !important;
+    border-color: black !important;
+    border-radius: 30px !important;
+    text-align: center;
+  }
+  .boton {
+    width: 100%;
+    margin: 0 auto !important;
+  }
+  .foto {
+    width: auto !important;
+    height: auto !important;
+  }
+  .tema {
+    margin: 0 auto;
+  }
+  table {
+    margin-left: 10% !important;
+    width: 80% !important;
+    border-radius: 15px !important;
+  }
+  .row {
+    margin-left: 10% !important;
+    width: 80% !important;
+    margin-top: 1.5rem !important;
+  }
+  
+  input {
+    height: 2.5rem;
+    border-radius: 15px !important;
+  }
