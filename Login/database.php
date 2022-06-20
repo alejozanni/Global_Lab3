@@ -24,9 +24,7 @@ class Database{
                 PDO::ATTR_EMULATE_PREPARES   => false,
             ];
             
-            $pdo = new PDO($connection, $this->user, $this->password, $options);
-    
-            return $pdo;
+            return new PDO($connection, $this->user, $this->password, $options);    
         }catch(PDOException $e){
             print_r('Error connection: ' . $e->getMessage());
         }

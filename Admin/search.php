@@ -1,15 +1,34 @@
 <?php 
+
+include_once (__DIR__ . '../../Login/database.php');
+
 session_start();
 
-    if(!isset($_SESSION['rol'])){
+if(!isset($_SESSION['rol'])){
+    header('location: ../Login/login.php');
+
+
+}else{
+    if($_SESSION['rol'] != 1){
         header('location: ../Login/login.php');
-
-    }else{
-        if($_SESSION['rol'] != 1){
-            header('location: ../Login/login.php');
-        }
     }
+}
 
+$dbh = new Database();
+$client = $dbh->connect();
+
+$condition="";
+if(!empty($_POST)){
+$valor= $_POST['search'];
+if(!empty($valor)){
+    $condicion= "WHERE Producto LIKE '%$valor%'";
+}
+}
+
+$consulta= "SELECT * FROM users WHERE rol_id = 2 AND $condition";
+$query = $client->prepare($consulta);
+$query->execute();
+$result = $query->fetchAll();
 
 ?>
 
@@ -29,15 +48,14 @@ session_start();
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="../administrador/index.php">
+                <a class="navbar-brand" href="../Admin/admin.php">
                     <img
-                      src="../img/logo/.png"
+                      src="../img/logo/logoCompletoNegro.png"
                       alt=""
                       width="100"
                       height="100"
                       class="d-inline-block align-text-center logo-image"
                     />
-                    Defi At Home
                   </a>
               
                 </div>
@@ -57,33 +75,34 @@ session_start();
     <div class="col-sm-12 col-md-12 col-lg12">
         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
         <div class="d-grid gap-2 col-6 mx-auto">
-        <input type="text" name="buscar" class="form-control" placeholder="Ingrese el nombre del profesor" ><br>
+        <input type="text" name="search" class="form-control" placeholder="Ingrese el nombre del profesor" ><br>
         <input type="submit" class=" btn btn-outline-success btn-lg boton " value="Buscar" name="buscando">
         <br>
     </div>
         </form>
     
     <div class="table-responsive table-hover" id="Tabla-productos">
-        <?php if($resultado->num_rows>0){ ?>
+        <?php if($result>0){ ?>
               <table class="table ">
                   <thead class="text-muted table-dark">
                         <th class="text-center">ID</th>
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Edad</th>
                         <th class="text-center">Nacionalidad</th>
-                        <th class="text-center">Foto</th>
+                        <th class="text-center">Herramientas</th>
                   </thead>
                   <tbody>
-                    <?php
-                    while($row =$resultado->fetch_assoc()){ ?>
-                      <tr>
-                        <td class="text-center"> <?php echo $row['id'];?></td>
-                        <td class="text-center"> <?php echo $row['name'];?></td>
-                        <td class="text-center"> <?php echo $row['age'];?></td>
-                        <td class="text-center"> <?php echo $row['nationality'];?></td>
-                        <td class="text-center">  <a href="edit.php?id=<?php echo $row['id']  ?>">Editar-<a href="delete.php?id=<?php echo $row['id']?>">Borrar</a></td>
-                      </tr>
-                    <?php } ?>
+                   <?php
+                      foreach($result as $row): ?>
+                        <tr>
+                        <td class="text-center"> <?php echo $row['id'];?> </td>
+                        <td class="text-center"> <?php echo $row['name'];?> </td>
+                        <td class="text-center"> <?php echo $row['age'];?> </td> 
+                        <td class="text-center"> <?php echo  $row['nationality'];?> </td> 
+                        </tr>
+                        <?php
+                      endforeach
+                   ?>
                   </tbody>
               </table>
                 <?php }else{ ?>

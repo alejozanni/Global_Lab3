@@ -1,5 +1,5 @@
 <?php
-    include_once '../Login/database.php';
+    include_once (__DIR__ . '../../Login/database.php');
 
     session_start();
 
@@ -13,21 +13,14 @@
         }
     }
 
-    $one=1;
+    $dbh = new Database();
+    $client = $dbh->connect();
 
-    $dbhost= "localhost";
-    $dbuser ="root";
-    $dbpass ="";
-    $dbname = "defiathome";
-    $conn= mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+    $consulta= "SELECT * FROM users WHERE rol_id = 2";
+    $query = $client->prepare($consulta);
+    $query->execute();
+    $result = $query->fetchAll();
     
-    if(!$conn){
-        die("no hay conexion: ".mysqli_connect_error());
-    }
-
-    $consulta= "SELECT * FROM users";
-    $resultado= $conn->query($consulta);
-
 ?>
 
 
@@ -51,13 +44,12 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="../Home/index.html">
                     <img
-                      src="../img/logo/soloCompletoNegro.png"
+                      src="../img/logo/logoCompletoNegro.png"
                       alt=""
                       width="100"
                       height="100"
                       class="d-inline-block align-text-center logo-image"
                     />
-                    Defi At Home
                   </a>
               
                 </div>
@@ -78,31 +70,30 @@
               <h1>Listado de profesores</h1>
           </div>
 
-          <div class="table-responsive table-hover table-dark" id="Tabla-productos">
+          <div class="table-responsive table-hover table" id="Tabla-productos">
             <br>
-              <table class="table ">
-                  <thead class="text-muted table-dark">
+              <table class="table-striped">
+                  <thead class="text-muted table-bordered">
                         <th class="text-center">ID</th>
                         <th class="text-center">Nombre </th>
                         <th class="text-center">Edad</th>
                         <th class="text-center">Nacionalidad</th>
-                        <th class="text-center">Foto</th>
+                        <th class="text-center">Herramientas</th>
                         
                   </thead>
                   <tbody>
-                    <?php
- 
-                    while($row =$query->fetch()){ ?>
-                      <tr>
-                        <td class="text-center"> <?php echo $row['id'];?></td>
-                        <td class="text-center"> <?php echo $row['name'];?></td>
-                        <td class="text-center"> <?php echo $row['age'];?></td>
-                        <td class="text-center"> <?php echo $row['nacionality'];?></td>
-                        <td class="text-center "> <img  width="100px" src="data:image/jpg;base64 ,<?php echo base64_encode($row['Foto']);?> " /></td>
-                        <!-- pasamos los datos de esa fila a travez del campo id -->
-                        <td class="text-center"> <a href="edit.php?id=<?php echo $row['id']  ?>">Editar-<a href="delete.php?id=<?php echo $row['id']?> ">Borrar</a></td>
-                      </tr>
-                    <?php } ?>
+                   <?php
+                     // for($index = 0; count($result) > $index;$index++){
+                      foreach($result as $row): ?>
+                        <tr>
+                        <td class="text-center"> <?php echo $row['id'];?> </td>
+                        <td class="text-center"> <?php echo $row['name'];?> </td>
+                        <td class="text-center"> <?php echo $row['age'];?> </td> 
+                        <td class="text-center"> <?php echo  $row['nationality'];?> </td> 
+                        </tr>
+                        <?php
+                      endforeach
+                   ?>
                   </tbody>
               </table>
 
