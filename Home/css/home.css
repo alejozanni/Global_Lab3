@@ -23,6 +23,7 @@ body{
     border-color: #0844a4 !important;
     background-color: #0844a4 !important;
     transition:color 1s linear !important;
+    border-radius: 35px !important;
 }
 
 .btn{
@@ -57,10 +58,6 @@ body{
 .navbarChanges{
     justify-content: start !important;
     margin-left: 3% !important;
-}
-
-.btn-primary{
-    border-radius: 35px !important;
 }
 
 .nav-item a{

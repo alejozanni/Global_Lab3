@@ -1,37 +1,33 @@
 <?php 
 
-include_once (__DIR__ . '../../Login/database.php');
-
 session_start();
-
-if(!isset($_SESSION['rol'])){
-    header('location: ../Login/login.php');
-
-
-}else{
-    if($_SESSION['rol'] != 1){
-        header('location: ../Login/login.php');
-    }
+if(!isset($_SESSION['admin'])){
+  header("location:http://localhost/Global_lab3/Admin/admin.php");
 }
 
-$dbh = new Database();
-$client = $dbh->connect();
+$dbhost= "localhost";
+$dbuser ="root";
+$dbpass ="";
+$dbname = "defiathome2.0";
+$conn= mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+if(!$conn){
+    die("no hay conexion: ".mysqli_connect_error());
+}
 
 $condition="";
-if(!empty($_POST)){
-$valor= $_POST['search'];
-if(!empty($valor)){
-    $condicion= "WHERE Producto LIKE '%$valor%'";
-}
-}
 
-$consulta= "SELECT * FROM users WHERE rol_id = 2 AND $condition";
-$query = $client->prepare($consulta);
-$query->execute();
-$result = $query->fetchAll();
+if(!empty($_POST)){
+$value= $_POST['search'];
+  if(!empty($value)){
+    $condition= "WHERE name LIKE '%$value%'";
+  }
+}
+$consulta= "SELECT * FROM teachers $condition";
+$result= $conn->query($consulta);
+
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +44,7 @@ $result = $query->fetchAll();
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="../Admin/admin.php">
+                <a class="navbar-brand" href="../Home/index.html">
                     <img
                       src="../img/logo/logoCompletoNegro.png"
                       alt=""
@@ -62,53 +58,59 @@ $result = $query->fetchAll();
               
                 <div class="d-flex">
                   
-                <a href="insert.php"> <button class="btn btn-lg btn-outline-success" type="submit">Agregar</button></a>
-                <a href="logout.php"> <button class="btn btn-lg btn-outline-success" type="submit">Salir</button></a>
+                <a href="admin.php"> <button class="btn btn-primary btn-sm ps-3 pe-3 me-sm-3" type="submit">Volver</button></a>
+                <a href="insert.php"> <button class="btn btn-primary btn-sm ps-3 pe-3 me-sm-3" type="submit">Agregar</button></a>
+                <a href="logout.php"> <button class="btn btn-primary btn-sm ps-3 pe-3 me-sm-3" type="submit">Salir</button></a>
             </div>
               </div>
             </div>
           </nav>
    
-    <h1 class="titulo">Busqueda de profesores</h1>
+    <h1 class="titulo">Busqueda de profesor/a</h1>
     <br>
     <br>
     <div class="col-sm-12 col-md-12 col-lg12">
         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
         <div class="d-grid gap-2 col-6 mx-auto">
-        <input type="text" name="search" class="form-control" placeholder="Ingrese el nombre del profesor" ><br>
-        <input type="submit" class=" btn btn-outline-success btn-lg boton " value="Buscar" name="buscando">
+        <input type="text" name="search" class="form-control" placeholder="Ingrese el nombre del profesor/a" ><br>
+        <input type="submit" class="btn btn-primary btn-sm ps-3 pe-3 me-sm-3" value="Buscar" name="buscando">
         <br>
     </div>
         </form>
     
-    <div class="table-responsive table-hover" id="Tabla-productos">
-        <?php if($result>0){ ?>
-              <table class="table ">
-                  <thead class="text-muted table-dark">
+    <div class="table-responsive table-hover table" id="Tabla-profesores">
+        <?php if($result->num_rows>0){ ?>
+          <table class="table-striped">
+                  <thead class="text-muted table-bordered">
                         <th class="text-center">ID</th>
-                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Nombre </th>
                         <th class="text-center">Edad</th>
                         <th class="text-center">Nacionalidad</th>
-                        <th class="text-center">Herramientas</th>
+                        <th class="text-center">Foto</th>
+                        <th class="text-center">Editar</th>
+                        <th class="text-center">Eliminar</th>
+                        
                   </thead>
                   <tbody>
-                   <?php
-                      foreach($result as $row): ?>
-                        <tr>
-                        <td class="text-center"> <?php echo $row['id'];?> </td>
-                        <td class="text-center"> <?php echo $row['name'];?> </td>
-                        <td class="text-center"> <?php echo $row['age'];?> </td> 
-                        <td class="text-center"> <?php echo  $row['nationality'];?> </td> 
-                        </tr>
-                        <?php
-                      endforeach
-                   ?>
+                    <?php
+                    while($row =$result->fetch_assoc()){ ?>
+                      <tr>
+                        <td class="text-center"> <?php echo $row['id'];?></td>
+                        <td class="text-center"> <?php echo $row['name'];?></td>
+                        <td class="text-center"> <?php echo $row['age'];?></td>
+                        <td class="text-center"> <?php echo $row['nationality'];?></td>
+                        <td class="text-center "> <img  width="100px" src="data:image/jpg;base64 ,<?php echo base64_encode($row['photo']);?> " /></td>
+                        <td class="text-center"> <a href="edit.php?id=<?php echo $row['id'] ?>">Editar</a></td>
+                        <td class="text-center"> <a href="delete.php?id=<?php echo $row['id']?> ">Eliminar</a></td>
+                      </tr>
+                    <?php } ?>
                   </tbody>
               </table>
                 <?php }else{ ?>
-                     <p class="text-center text-danger"> No se encuentra ese profesor/a</p>
+                     <p class="text-center text-danger"> No se encuentran ese profesor/a </p>
                 <?php } ?>
           </div>
           </div>
 </body>
 </html>
+

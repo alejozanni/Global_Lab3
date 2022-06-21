@@ -1,61 +1,51 @@
 <?php
-    include_once 'database.php';
-    
-    session_start();
-    
-    if(isset($_SESSION['rol'])){
-        switch($_SESSION['rol']){
-            case 1:
-                header('location: ../Admin/admin.php');
-                break;
+session_start();
+$dbhost= "localhost";
+$dbuser ="root";
+$dbpass ="";
+$dbname = "defiathome2.0";
 
-            case 2:
-                header('location: ../Teacher/teacher.php');
-                break;
 
-            case 3:
-                header('location: ../Student/student.php');
-                break;
+ 
+$conn= mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
-            default:
+if(!$conn){
+    die("no hay conexion: ".mysqli_connect_error());
+}
+
+if(isset($_POST['login'])){
+    $email= $_POST["email"];
+    $pass = $_POST["password"];
+
+    $query = mysqli_query($conn,"SELECT * FROM users WHERE email = '$email' and password ='$pass'");
+    $arr=mysqli_fetch_row($query);
+
+    $nro = mysqli_num_rows($query);
+    if($nro == 1){
+        if($arr[3]==1){
+            $_SESSION['admin']='login';
+            header("location: ../Admin/admin.php");
         }
-    }
-
-    if(isset($_POST['username']) && isset($_POST['password'])){
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        $db = new Database();
-        $query = $db->connect()->prepare('SELECT *FROM users WHERE username = :username AND password = :password');
-        $query->execute(['username' => $username, 'password' => $password]);
-
-        $row = $query->fetch(PDO::FETCH_NUM);
         
-        if($row == true){
-            $rol = $row[3];
-            
-            $_SESSION['rol'] = $rol;
-            switch($rol){
-                case 1:
-                    header('location: ../Admin/admin.php');
-                break;
-
-                case 2:
-                    header('location: ../Teacher/teacher.php');
-                break;
-
-                case 3:
-                    header('location: ../Student/student.php');
-                    break;
-
-                default:
-            }
-        }else{
-            // no existe el usuario
-            echo "Nombre de usuario o contraseña incorrecto";
+        if($arr[3]==2){
+            $_SESSION['teacher']='login';
+            header("location: ../Teacher/teacher.php");
         }
-    }
-?>
+
+        if($arr[3]==3){
+            $_SESSION['student']='login';
+            header("location: ../Student/student.php");
+        }
+
+    }else{
+    
+    echo "<script>alert('Error nombre o usuario incorrecto');
+        window.location =  'http://localhost/Global_lab3/Login/login.php';  
+    </script>";
+    }   
+}
+
+?> 
 
 <!DOCTYPE html>
 <html lang="es">
@@ -68,18 +58,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
 </head>
 <body>
-   <form action="#" method="post">
+   <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
    <a class="home" href="../Home/index.html">
        <img src="../img/logo/logoCompletoBlanco.png" alt="" width="130" height="120">
    </a>
    <h1 class="animate__animated animate__.backInLeft">Ingresa a tu cuenta</h1>
 
-   <p><input type="text" placeholder="Nombre de usuario" name="username"></p>
+   <p><input type="email" placeholder="Email" name="email"></p>
    <p><input type="password" placeholder="Contraseña" name="password"></p>
 
-   <input type="submit" value="Ingresar">
+   <a href="" id="formulario"> <input type="submit" name="login" value="Ingresar">
+
    <p><br> ¿No tienes una cuenta? <a href="../Sign up/index.html">Registrarme </a></br></p>
    </form> 
+   
+   </section>
+      <script src="/Login/sessionError.js"></script>
+    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
 
 </body>
 </html>
