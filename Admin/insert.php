@@ -82,7 +82,6 @@ header("location:admin.php");
 
          <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
         <div class="row">
-           
             <input type="text" name="name"  class="form-control" placeholder="Nombre" required>
             <br>
         </div>

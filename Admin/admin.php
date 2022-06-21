@@ -16,12 +16,12 @@ if(!$conn){
 }
 
 $consulta= "SELECT * FROM teachers";
-$guardar = $conn->query($consulta);
+$save = $conn->query($consulta);
 
-$cant_filas= mysqli_num_rows($guardar);
-$articulos_por_pagina=2;
+$nrows= mysqli_num_rows($save);
+$pagArticles=2;
 
-$paginas= ceil( $cant_filas/$articulos_por_pagina);
+$pages= ceil( $nrows/$pagArticles);
 
 
   if(isset($_GET['name'])){
@@ -94,11 +94,11 @@ $paginas= ceil( $cant_filas/$articulos_por_pagina);
                       header('location: admin.php?pagina=1');
                     }
 
-                    $contador_paginacion=  ($_GET['pagina']-1)*$articulos_por_pagina;
+                    $contador_paginacion=  ($_GET['pagina']-1)*$pagArticles;
                  
-                    $start_from = ($_GET['pagina']-1)*$articulos_por_pagina;
+                    $start_from = ($_GET['pagina']-1)*$pagArticles;
 
-                    $query = "SELECT * FROM teachers ORDER BY $idcolumn $name LIMIT $start_from, $articulos_por_pagina";
+                    $query = "SELECT * FROM teachers ORDER BY $idcolumn $name LIMIT $start_from, $pagArticles";
                     $result = mysqli_query($conn, $query);
 
                  foreach($result as $row):
@@ -109,7 +109,6 @@ $paginas= ceil( $cant_filas/$articulos_por_pagina);
                         <td class="text-center"> <?php echo $row['age'];?></td>
                         <td class="text-center"> <?php echo $row['nationality'];?></td>
                         <td class="text-center "> <img  width="100px" src="data:image/jpg;base64 ,<?php echo base64_encode($row['photo']);?> " /></td>
-                        <!-- pasamos los datos de esa fila a travez del campo id -->
                         <td class="text-center"> <a href="edit.php?id=<?php echo $row['id'] ?>">Editar</a></td>
                         <td class="text-center"> <a href="delete.php?id=<?php echo $row['id']?> ">Eliminar</a></td>
                       </tr>
@@ -118,17 +117,16 @@ $paginas= ceil( $cant_filas/$articulos_por_pagina);
              
               </table>
         </div>
-
         <br><br><br>
 
     <nav aria-label="Page navigation example " class="paginas">
       <ul class="pagination justify-content-center">
-        <li class="page-item <?php echo $_GET['pagina']<$paginas? 'disabled': '' ?>"><a class="page-link" href=" <?php echo 'admin.php?pagina='.$_GET['pagina']-1 ?> ">Anterior</a></li>
-          <?php for ($i=0; $i < $paginas; $i++):  ?>
+        <li class="page-item <?php echo $_GET['pagina']<$pages? 'disabled': '' ?>"><a class="page-link" href=" <?php echo 'admin.php?pagina='.$_GET['pagina']-1 ?>">Anterior</a></li>
+          <?php for ($i=0; $i < $pages; $i++):  ?>
         <li class="page-item <?php echo $_GET['pagina']==$i+1  ? 'active' : ''  ?>"> 
         <a class="page-link" href="admin.php?pagina=<?php echo $i+1?>"><?php echo $i+1?></a></li>
           <?php endfor ?>
-        <li class="page-item <?php echo $_GET['pagina']>$paginas? 'disabled': '' ?>"><a class="page-link" href="<?php echo 'admin.php?pagina='.$_GET['pagina']+1 ?>">Siguiente</a></li>
+        <li class="page-item <?php echo $_GET['pagina']>=$pages? 'disabled': '' ?>"><a class="page-link" href="<?php echo 'admin.php?pagina='.$_GET['pagina']+1 ?>">Siguiente</a></li>
       </ul>
     </nav>
 

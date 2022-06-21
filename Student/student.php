@@ -17,13 +17,13 @@ if(!$conn){
 }
 
 $consulta= "SELECT * FROM courses";
-$guardar = $conn->query($consulta);
+$save = $conn->query($consulta);
 
 
-$cant_filas= mysqli_num_rows($guardar);
-$articulos_por_pagina=1;
+$nrows= mysqli_num_rows($save);
+$pagArticles=2;
 
-$paginas= ceil( $cant_filas/$articulos_por_pagina);
+$pages= ceil( $nrows/$pagArticles);
 
 if(isset($_GET['course'])){
   $name = $_GET['course'];
@@ -85,11 +85,11 @@ if(isset($_GET['idcolumn'])){
                       header('location: student.php?pagina=1');
                     }
 
-                    $contador_paginacion=  ($_GET['pagina']-1)*$articulos_por_pagina;
+                    $contador_paginacion=  ($_GET['pagina']-1)*$pagArticles;
                  
-                    $start_from = ($_GET['pagina']-1)*$articulos_por_pagina;
+                    $start_from = ($_GET['pagina']-1)*$pagArticles;
 
-                    $query = "SELECT * FROM courses ORDER BY $idcolumn $name LIMIT $start_from, $articulos_por_pagina";
+                    $query = "SELECT * FROM courses ORDER BY $idcolumn $name LIMIT $start_from, $pagArticles";
                   $result = mysqli_query($conn, $query);
 
                  foreach($result as $row):
@@ -98,7 +98,7 @@ if(isset($_GET['idcolumn'])){
                        <!-- <td class="text-center"> <?php echo $row['id'];?></td> -->
                         <td class="text-center"> <?php echo $row['name'];?></td>
                         <td class="text-center"> <?php echo $row['description'];?></td>
-                        <td class="text-center"> <a href="video.php?id=<?php echo $row['id']  ?>">-Ver-</td>
+                        <td class="text-center"> <a href="video.php?id=<?php echo $row['id']  ?>">Ver</td>
                       
                       </tr>
                     <?php endforeach ?>
@@ -108,17 +108,15 @@ if(isset($_GET['idcolumn'])){
               <br><br><br>
 
               <nav aria-label="Page navigation example " class="paginas">
-  <ul class="pagination justify-content-center">
-    <li class="page-item <?php echo $_GET['pagina']<$paginas? 'disabled': '' ?>"><a class="page-link" href=" <?php echo 'student.php?pagina='.$_GET['pagina']-1 ?> ">Anterior</a></li>
-   <?php for ($i=0; $i < $paginas; $i++):  ?>
-    <li class="page-item <?php echo $_GET['pagina']==$i+1  ? 'active' : ''  ?>"> <!--esta linea de codigo php muestra en que pagina estamos -->
-      <a class="page-link" href="student.php?pagina=<?php echo $i+1?>"><?php echo $i+1?></a></li>
-    <?php endfor ?>
-    <li class="page-item <?php echo $_GET['pagina']>=$paginas? 'disabled': '' ?>"><a class="page-link" href="<?php echo 'student.php?pagina='.$_GET['pagina']+1 ?>">Siguiente</a></li>
-  </ul>
-</nav>
+                <ul class="pagination justify-content-center">
+                 <li class="page-item <?php echo $_GET['pagina']<$pages? 'disabled': '' ?>"><a class="page-link" href=" <?php echo 'student.php?pagina='.$_GET['pagina']-1 ?> ">Anterior</a></li>
+                   <?php for ($i=0; $i < $pages; $i++):  ?>
+                 <li class="page-item <?php echo $_GET['pagina']==$i+1  ? 'active' : ''  ?>"> 
+                   <a class="page-link" href="student.php?pagina=<?php echo $i+1?>"><?php echo $i+1?></a></li>
+                    <?php endfor ?>
+                  <li class="page-item <?php echo $_GET['pagina']>=$pages? 'disabled': '' ?>"><a class="page-link" href="<?php echo 'student.php?pagina='.$_GET['pagina']+1 ?>">Siguiente</a></li>
+                </ul>
+              </nav>
           </div>
-
-    
   </body>
 </html>
